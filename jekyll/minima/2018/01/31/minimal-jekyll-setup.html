@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Minima(l) Jekyll Setup</title>
+  <meta name="description" content="    Given this is my first Jekyll site, it seems appropriate to cover its basic setup and deployment to GitHub Pages. GitHub Pages is a hosting service for s...">
+
+	<script src="/assets/javascript/super-search.js" type="text/javascript"></script>
+	<script src="/assets/javascript/toggle.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/assets/css/super-search.css">
+  <link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+	<link rel="stylesheet" href="/assets/css/columns.css">
+	<link rel="stylesheet" href="/assets/css/slide-frame.css">
+	<link rel="stylesheet" href="/assets/css/details.css">
+  <link rel="canonical" href="https://sdleisure.github.io/jekyll/minima/2018/01/31/minimal-jekyll-setup.html">
+  <link rel="alternate" type="application/rss+xml" title="Self-directed Leisure" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+		<!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<div class="super-search" id="js-super-search">
+			<a href="javascript:void(0)" onclick="superSearch.toggle()" class="super-search__close-btn">X</a>
+			<input type="text" placeholder="Looking for something?" class="super-search__input" id="js-super-search__input">
+			<ul class="super-search__results" id="js-super-search__results"></ul>
+		</div>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">Self-directed Leisure</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Posts.html">Posts by Tag</a>
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Slides.html">Decks by Tag</a>
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Minima(l) Jekyll Setup</h1>
+    <p class="post-meta">
+      <time datetime="2018-01-31T00:00:00-05:00" itemprop="datePublished">
+        
+        Jan 31, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>    Given this is my first <a href="https://jekyllrb.com/"><del>Jekyll</del> site</a>, it seems appropriate to cover its basic setup and deployment to <a href="https://pages.github.com/">GitHub Pages</a>. GitHub Pages is a hosting service for static site generators. A static website is a good choice if you have no need for client input or if you are <del>a simpleton</del> new to web design, like me. Quick remark: the sequel will have a Debian flavor.</p>
+
+<p><strong>Contents</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#installing-git" id="markdown-toc-installing-git"><strong>Installing Git</strong></a></li>
+  <li><a href="#installing-jekyll" id="markdown-toc-installing-jekyll"><strong>Installing Jekyll</strong></a></li>
+  <li><a href="#creating-the-site" id="markdown-toc-creating-the-site"><strong>Creating the Site</strong></a></li>
+  <li><a href="#deploying-the-site" id="markdown-toc-deploying-the-site"><strong>Deploying the Site</strong></a></li>
+  <li><a href="#for-the-road" id="markdown-toc-for-the-road"><strong>For the Road</strong></a></li>
+</ul>
+
+<h3 id="installing-git"><strong>Installing Git</strong></h3>
+<p>    First off, we are going to need <a href="https://git-scm.com/">Git</a>. If you have not already installed it, you can personalize the following:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nt">-y</span> install git-all
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Foo Bar"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email baz@qux.com
+<span class="nv">$ </span>git config <span class="nt">--global</span> core.editor foobar
+</code></pre></div></div>
+<p>The <code class="highlighter-rouge">core.editor</code> variable allows you to set your preferred editor, for example, <a href="https://vim.sourceforge.io/">Vim</a> or <a href="https://www.gnu.org/software/emacs/">Emacs</a>. If unset, the system’s default editor will be used. Git can also summarize your configuration.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--list</span>
+</code></pre></div></div>
+
+<h3 id="installing-jekyll"><strong>Installing Jekyll</strong></h3>
+<p>    Before we can generate our Jekyll site, we must have <a href="https://www.ruby-lang.org/en/">Ruby</a> installed.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nt">-y</span> install ruby ruby-dev make gcc
+</code></pre></div></div>
+<p>We can now install Jekyll and the Ruby gems dependency manager <a href="https://bundler.io/">Bundler</a>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>gem install jekyll bundler
+</code></pre></div></div>
+
+<h3 id="creating-the-site"><strong>Creating the Site</strong></h3>
+<p>    As it turns out, building a Jekyll site with the <a href="https://jekyll.github.io/minima/">Minima theme</a> is <em>super hard</em>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll new mysite <span class="o">&amp;&amp;</span> <span class="nb">cd </span>mysite
+<span class="nv">$ </span>git init
+<span class="nv">$ </span>jekyll build
+<span class="nv">$ </span>git add <span class="nb">.</span> <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"Initial page commit."</span>
+</code></pre></div></div>
+<p>The next snippet allows you a local glimpse of your site by browsing to <a href="http://localhost:4000">http://localhost:4000</a>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundler <span class="nb">exec </span>jekyll serve <span class="nt">--watch</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1 &amp;
+</code></pre></div></div>
+<p>The <code class="highlighter-rouge">--watch</code> switch performs an auto-regeneration as you locally edit your site.</p>
+
+<p>    It is worth mentioning you can keep your local Jekyll environment in order with that of GitHub Pages. In your site’s <code class="highlighter-rouge">Gemfile</code>, just replace the line which contains <code class="highlighter-rouge">gem "jekyll"</code> with the following line:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="n">gem</span> <span class="s2">"github-pages"</span><span class="p">,</span> <span class="ss">group: :jekyll_plugins</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Run <code class="highlighter-rouge">bundler install</code> to finish. Do not forget to keep your locale in sync.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>bundler update github-pages
+</code></pre></div></div>
+
+<h3 id="deploying-the-site"><strong>Deploying the Site</strong></h3>
+<p>    The time has come to deploy our site to GitHub. Make sure you have created the necessary repositories on <a href="https://help.github.com/articles/create-a-repo/">GitHub</a>. You can publish a User Page as follows:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout master
+<span class="nv">$ </span>git remote add origin https://github.com/username/username.github.io
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin master
+</code></pre></div></div>
+<p>Now, your User Page will be hosted at <code>https://username.github.io</code>.</p>
+
+<p>    You can also publish a Project Page with the <code class="highlighter-rouge">gh-pages</code> branch.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-m</span> master gh-pages
+<span class="nv">$ </span>git remote add origin https://github.com/username/repo
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin gh-pages
+</code></pre></div></div>
+<p>You Project Page will appear at <code>https://username.github.io/repo</code>. Separating your site from your project source files can be done with an orphan branch.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">--orphan</span> gh-pages
+<span class="nv">$ </span>git remote add origin https://github.com/username/repo
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin gh-pages
+</code></pre></div></div>
+<p>At long last, your site should be up for <del>someone</del> everyone to see.</p>
+
+<h3 id="for-the-road"><strong>For the Road</strong></h3>
+<p>    So, now we know how to set up a basic Jekyll site on GitHub. For those of us looking to be initiated in web development, Jekyll is a safe option. Relying on Markdown and Liquid, Jekyll provides a minimal approach to static site generation. Here are some links to help us build vocabulary and add some zest to our basic Jekyll site.</p>
+
+<ul>
+  <li><a href="https://devdocs.io">DevDocs</a></li>
+  <li><a href="https://help.github.com/categories/writing-on-github/">Writing on GitHub</a></li>
+  <li><a href="https://jekyllrb.com/docs/home/">Jekyll Docs</a></li>
+  <li><a href="http://jekyllthemes.org">Jekyll Themes</a></li>
+  <li><a href="https://kramdown.gettalong.org/syntax.html">kramdown Syntax</a></li>
+  <li><a href="https://help.shopify.com/themes/liquid">Liquid Reference</a></li>
+  <li><a href="https://daringfireball.net/projects/markdown/syntax/">Markdown Reference</a></li>
+  <li><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html">SCSS Reference</a></li>
+  <li><a href="https://pages.github.com/themes/">Supported GitHub Pages Themes</a></li>
+  <li><a href="http://yaml.org/spec/1.2/spec.html">YAML Reference</a></li>
+</ul>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+	  
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Self-directed Leisure
+            
+            </li>
+            
+            <li><a href="mailto:hiyasdleisure@gmail.com">hiyasdleisure@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/sdleisure"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">sdleisure</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+				<p>A simple downtime blog. <br />
+Press <kbd>ESC</kbd> or <kbd>/</kbd> to search.<br />
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+		
+    <!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<script>superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-super-search',
+      inputSelector: '#js-super-search__input',
+      resultsSelector: '#js-super-search__results'
+    });</script>
+		<!-- Courtesty of MathJax: https://mathjax.org -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { extensions: ["AMScd.js"] }});
+    </script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  </body>
+
+</html>

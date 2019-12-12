@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Revealing Jekyll</title>
+  <meta name="description" content="    As a Beamer alternative, I have been wanting to look into the Reveal.js presentation framework for sometime. Also, I thought it would be a nice way of sp...">
+
+	<script src="/assets/javascript/super-search.js" type="text/javascript"></script>
+	<script src="/assets/javascript/toggle.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/assets/css/super-search.css">
+  <link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+	<link rel="stylesheet" href="/assets/css/columns.css">
+	<link rel="stylesheet" href="/assets/css/slide-frame.css">
+	<link rel="stylesheet" href="/assets/css/details.css">
+  <link rel="canonical" href="https://sdleisure.github.io/jekyll/reveal.js/2018/05/29/revealing-jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="Self-directed Leisure" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+		<!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<div class="super-search" id="js-super-search">
+			<a href="javascript:void(0)" onclick="superSearch.toggle()" class="super-search__close-btn">X</a>
+			<input type="text" placeholder="Looking for something?" class="super-search__input" id="js-super-search__input">
+			<ul class="super-search__results" id="js-super-search__results"></ul>
+		</div>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">Self-directed Leisure</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Posts.html">Posts by Tag</a>
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Slides.html">Decks by Tag</a>
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Revealing Jekyll</h1>
+    <p class="post-meta">
+      <time datetime="2018-05-29T00:00:00-04:00" itemprop="datePublished">
+        
+        May 29, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>    As a <a href="https://ctan.org/pkg/beamer?lang=en">Beamer</a> alternative, I have been wanting to look into the <a href="https://github.com/hakimel/reveal.js/">Reveal.js</a> presentation framework for sometime. Also, I thought it would be a nice way of spicing up some blog posts with a flashcard effect. To this end, we will cover how to configure and integrate the Reveal.js framework within your Jekyll site.</p>
+
+<p><strong>Contents</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#loading-revealjs" id="markdown-toc-loading-revealjs"><strong>Loading Reveal.js</strong></a></li>
+  <li><a href="#embedding-slide-shows" id="markdown-toc-embedding-slide-shows"><strong>Embedding Slide Shows</strong></a></li>
+  <li><a href="#indexing-slide-decks" id="markdown-toc-indexing-slide-decks"><strong>Indexing Slide Decks</strong></a></li>
+  <li><a href="#for-the-road" id="markdown-toc-for-the-road"><strong>For the Road</strong></a></li>
+</ul>
+
+<h3 id="loading-revealjs"><strong>Loading Reveal.js</strong></h3>
+<p>    To integrate Reveal.js with Jekyll, we will need a copy of the framework within your site’s root directory.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://github.com/hakimel/reveal.js/archive/master.zip
+<span class="nv">$ </span>unzip master.zip <span class="nt">-d</span> ./reveal.js
+<span class="nv">$ </span>rm master.zip
+</code></pre></div></div>
+<p>Or you can <code class="highlighter-rouge">git clone</code> the framework.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/hakimel/reveal.js
+<span class="nv">$ </span>rm <span class="nt">-r</span> reveal.js/.git
+</code></pre></div></div>
+<p>    Now we must create a layout for our slides. To create a basic layout, add the following snippet with the path <code class="highlighter-rouge">_layouts/slides.html</code> relative to the root of your site.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" />26<br data-jekyll-commonmark-ghpages="" />27<br data-jekyll-commonmark-ghpages="" />28<br data-jekyll-commonmark-ghpages="" />29<br data-jekyll-commonmark-ghpages="" />30<br data-jekyll-commonmark-ghpages="" />31<br data-jekyll-commonmark-ghpages="" />32<br data-jekyll-commonmark-ghpages="" />33<br data-jekyll-commonmark-ghpages="" />34<br data-jekyll-commonmark-ghpages="" />35<br data-jekyll-commonmark-ghpages="" />36<br data-jekyll-commonmark-ghpages="" />37<br data-jekyll-commonmark-ghpages="" />38<br data-jekyll-commonmark-ghpages="" />39<br data-jekyll-commonmark-ghpages="" />40<br data-jekyll-commonmark-ghpages="" />41<br data-jekyll-commonmark-ghpages="" />42<br data-jekyll-commonmark-ghpages="" />43<br data-jekyll-commonmark-ghpages="" />44<br data-jekyll-commonmark-ghpages="" />45<br data-jekyll-commonmark-ghpages="" />46<br data-jekyll-commonmark-ghpages="" />47<br data-jekyll-commonmark-ghpages="" />48<br data-jekyll-commonmark-ghpages="" />49<br data-jekyll-commonmark-ghpages="" />50<br data-jekyll-commonmark-ghpages="" />51<br data-jekyll-commonmark-ghpages="" />52<br data-jekyll-commonmark-ghpages="" />53<br data-jekyll-commonmark-ghpages="" />54<br data-jekyll-commonmark-ghpages="" />55<br data-jekyll-commonmark-ghpages="" />56<br data-jekyll-commonmark-ghpages="" />57<br data-jekyll-commonmark-ghpages="" />58<br data-jekyll-commonmark-ghpages="" />59<br data-jekyll-commonmark-ghpages="" />60<br data-jekyll-commonmark-ghpages="" />61<br data-jekyll-commonmark-ghpages="" />62<br data-jekyll-commonmark-ghpages="" />63<br data-jekyll-commonmark-ghpages="" />64<br data-jekyll-commonmark-ghpages="" />65<br data-jekyll-commonmark-ghpages="" />66<br data-jekyll-commonmark-ghpages="" />67<br data-jekyll-commonmark-ghpages="" />68<br data-jekyll-commonmark-ghpages="" />69<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="cp">&lt;!doctype html&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;head&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-capable"</span> <span class="na">content=</span><span class="s">"yes"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-status-bar-style"</span> <span class="na">content=</span><span class="s">"black-translucent"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;title&gt;</span>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}<span class="nt">&lt;/title&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">css</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">css</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span><span class="nt">/&gt;</span><br data-jekyll-commonmark-ghpages="" />		{%if page.theme %}<br data-jekyll-commonmark-ghpages="" />			<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">css</span><span class="err">/</span><span class="na">theme</span><span class="err">/"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">|</span> <span class="na">append:</span> <span class="na">page</span><span class="err">.</span><span class="na">theme</span> <span class="err">|</span> <span class="na">append:</span> <span class="err">'.</span><span class="na">css</span><span class="err">'</span> <span class="err">}}"</span> <span class="na">id=</span><span class="s">"theme"</span><span class="nt">/&gt;</span><br data-jekyll-commonmark-ghpages="" />		{% else %}<br data-jekyll-commonmark-ghpages="" />			<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">css</span><span class="err">/</span><span class="na">theme</span><span class="err">/</span><span class="na">night</span><span class="err">.</span><span class="na">css</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span> <span class="na">id=</span><span class="s">"theme"</span><span class="nt">/&gt;</span><br data-jekyll-commonmark-ghpages="" />		{% endif %}<br data-jekyll-commonmark-ghpages="" />		<span class="c">&lt;!-- Theme used for syntax highlighting of code --&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">lib</span><span class="err">/</span><span class="na">css</span><span class="err">/</span><span class="na">zenburn</span><span class="err">.</span><span class="na">css</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span><span class="nt">/&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />		<span class="c">&lt;!-- Printing and PDF exports --&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;script&gt;</span><br data-jekyll-commonmark-ghpages="" />			<span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">'link'</span> <span class="p">);</span><br data-jekyll-commonmark-ghpages="" />			<span class="nx">link</span><span class="p">.</span><span class="nx">rel</span> <span class="o">=</span> <span class="s1">'stylesheet'</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />			<span class="nx">link</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">'text/css'</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />			<span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/print-pdf/gi</span> <span class="p">)</span> <span class="p">?</span> <span class="s1">'{{ "/reveal.js/css/print/pdf.css" | prepend: site.baseurl }}'</span> <span class="p">:</span> <span class="s1">'{{ "/reveal.js/css/print/paper.css" | prepend: site.baseurl }}'</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />			<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span> <span class="s1">'head'</span> <span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">link</span> <span class="p">);</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;/head&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;body&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"reveal"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"slides"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />				{{ content }}<br data-jekyll-commonmark-ghpages="" />			<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">lib</span><span class="err">/</span><span class="na">js</span><span class="err">/</span><span class="na">head</span><span class="err">.</span><span class="na">min</span><span class="err">.</span><span class="na">js</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span><span class="nt">&gt;&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">/</span><span class="na">js</span><span class="err">/</span><span class="na">reveal</span><span class="err">.</span><span class="na">js</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span><span class="nt">&gt;&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;script&gt;</span><br data-jekyll-commonmark-ghpages="" />			<span class="c1">// Full list of configuration options available at:</span><br data-jekyll-commonmark-ghpages="" />			<span class="c1">// https://github.com/hakimel/reveal.js#configuration</span><br data-jekyll-commonmark-ghpages="" />			<span class="nx">Reveal</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span><br data-jekyll-commonmark-ghpages="" />				<span class="na">controls</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />				<span class="na">progress</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />				<span class="na">history</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />				<span class="na">center</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />				<span class="p">{</span><span class="o">%</span><span class="k">if</span> <span class="nx">page</span><span class="p">.</span><span class="nx">transition</span> <span class="o">%</span><span class="p">}</span><br data-jekyll-commonmark-ghpages="" />					<span class="nl">transition</span><span class="p">:</span> <span class="s1">'{{page.transition}}'</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />				<span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">}</span><br data-jekyll-commonmark-ghpages="" />					<span class="nl">transition</span><span class="p">:</span> <span class="s1">'slide'</span><span class="p">,</span> <span class="c1">// none/fade/slide/convex/concave/zoom</span><br data-jekyll-commonmark-ghpages="" />				<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />				<span class="c1">// Optional reveal.js plugins</span><br data-jekyll-commonmark-ghpages="" />				<span class="nl">dependencies</span><span class="p">:</span> <span class="p">[</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/lib/js/classList.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">condition</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">;</span> <span class="p">}</span> <span class="p">},</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/plugin/markdown/marked.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">condition</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!!</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">'[data-markdown]'</span> <span class="p">);</span> <span class="p">}</span> <span class="p">},</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/plugin/markdown/markdown.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">condition</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!!</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">'[data-markdown]'</span> <span class="p">);</span> <span class="p">}</span> <span class="p">},</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/plugin/highlight/highlight.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">async</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">condition</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!!</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">'pre code'</span> <span class="p">);</span> <span class="p">},</span> <span class="na">callback</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">hljs</span><span class="p">.</span><span class="nx">initHighlightingOnLoad</span><span class="p">();</span> <span class="p">}</span> <span class="p">},</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/plugin/zoom-js/zoom.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">async</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span><br data-jekyll-commonmark-ghpages="" />					<span class="p">{</span> <span class="na">src</span><span class="p">:</span> <span class="s1">'{{ "/reveal.js/plugin/notes/notes.js" | prepend: site.baseurl }}'</span><span class="p">,</span> <span class="na">async</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />				<span class="p">]</span><br data-jekyll-commonmark-ghpages="" />			<span class="p">});</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;/body&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/html&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Next we will create a Jekyll collection to encapsulate our slide decks. This will require the following addition to your <code class="highlighter-rouge">_config.yml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="na">collections</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">slides</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">output</span><span class="pi">:</span> <span class="no">true</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">permalink</span><span class="pi">:</span> <span class="s">/:collection/:path</span><br data-jekyll-commonmark-ghpages="" /><span class="na">defaults</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">scope</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">slides"</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">values</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">slides"</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>With this configuration, slide decks should be placed in <code class="highlighter-rouge">_slides/</code>.</p>
+
+<p>    Here is a snippet for an example slide show:</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nn">---</span><br data-jekyll-commonmark-ghpages="" /><span class="na">layout</span><span class="pi">:</span> <span class="s">slides</span><br data-jekyll-commonmark-ghpages="" /><span class="na">title</span><span class="pi">:</span> <span class="s">Foobar</span><br data-jekyll-commonmark-ghpages="" /><span class="na">description</span><span class="pi">:</span> <span class="s">Bax</span><br data-jekyll-commonmark-ghpages="" /><span class="na">transition</span><span class="pi">:</span> <span class="s">slide</span><br data-jekyll-commonmark-ghpages="" /><span class="na">tags</span><span class="pi">:</span> <span class="s">tag1 tag2</span><br data-jekyll-commonmark-ghpages="" /><span class="nn">---</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section</span> <span class="na">data-markdown</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="gu">## FooBar</span><br data-jekyll-commonmark-ghpages="" /><span class="p">[</span><span class="nv">sdleisure</span><span class="p">](</span><span class="sx">https://github.com/selfdirectedleisure</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section</span> <span class="na">data-markdown</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="gu">## Bax</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section</span> <span class="na">data-markdown</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="gu">## Qux</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section</span> <span class="na">data-markdown</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="gu">## Quux</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;section</span> <span class="na">data-markdown</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="gu">## Quuux</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/section&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>We can create an internal link to this slide show like so:</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre>[slide show](<span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">baseurl</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="nt">link</span><span class="w"> </span>_slides/slide-deck.md<span class="w"> </span><span class="p">%}</span>)</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="embedding-slide-shows"><strong>Embedding Slide Shows</strong></h3>
+<p>    We can embed slide decks directly to web pages by using an <code class="highlighter-rouge">iframe</code>. Start by adding a CSS file <code class="highlighter-rouge">assets/css/slide-frame.css</code> containing the following:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nf">#slide-frame</span> <span class="nt">div</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nf">#slide-frame</span> <span class="nt">iframe</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nl">height</span><span class="p">:</span> <span class="m">450px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nl">width</span><span class="p">:</span> <span class="m">650px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Do not forget to add a link in the <code class="highlighter-rouge">head</code>.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">assets</span><span class="err">/</span><span class="na">css</span><span class="err">/</span><span class="na">slide-frame</span><span class="err">.</span><span class="na">css</span><span class="err">"</span> <span class="err">|</span> <span class="na">relative_url</span> <span class="err">}}"</span><span class="nt">&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>    Slide decks can be embedded like so:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nt">&lt;center&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"slide-frame"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;iframe</span> <span class="na">id=</span><span class="s">"slide-frame"</span> <span class="na">src=</span><span class="s">"{{ "</span><span class="err">/</span><span class="na">slides</span><span class="err">/</span><span class="na">test</span><span class="err">.</span><span class="na">html</span><span class="err">"</span> <span class="err">|</span> <span class="na">prepend:</span> <span class="na">site</span><span class="err">.</span><span class="na">baseurl</span> <span class="err">}}"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />			Sorry, your browser is not supported.<br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/iframe&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/center&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Below is a <a href="/slides/reveal-tutorial">slide show</a> with a little extra styling.</p>
+<center>
+	<div id="slide-frame">
+		<iframe id="slide-frame" src="/slides/reveal-tutorial.html">
+			Sorry, your browser is not supported.
+		</iframe>
+	</div>
+</center>
+<h3 id="indexing-slide-decks"><strong>Indexing Slide Decks</strong></h3>
+<p>    It is possible to index our slide decks with a little Liquid. First, create a CSS file <code class="highlighter-rouge">assets/css/columns.css</code>:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="k">@media</span> <span class="n">only</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="nf">#col</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">-moz-column-count</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">-webkit-column-count</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">column-count</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="p">}</span><br data-jekyll-commonmark-ghpages="" />	<br data-jekyll-commonmark-ghpages="" />	<span class="nf">#col</span> <span class="nt">div</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">-webkit-column-break-inside</span><span class="p">:</span> <span class="nb">avoid</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">page-break-inside</span><span class="p">:</span> <span class="nb">avoid</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nl">break-inside</span><span class="p">:</span> <span class="n">avoid-column</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Now we can create an index page called <code class="highlighter-rouge">tags-Slides.md</code> for our slides collection.</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" />26<br data-jekyll-commonmark-ghpages="" />27<br data-jekyll-commonmark-ghpages="" />28<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nn">---</span><br data-jekyll-commonmark-ghpages="" /><span class="na">layout</span><span class="pi">:</span> <span class="s">page</span><br data-jekyll-commonmark-ghpages="" /><span class="na">title</span><span class="pi">:</span> <span class="s">Slides by Tag</span><br data-jekyll-commonmark-ghpages="" /><span class="nn">---</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"col"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />	{% capture tags %}<br data-jekyll-commonmark-ghpages="" />		{% for slide in site.slides %}<br data-jekyll-commonmark-ghpages="" />			{% for tag in slide.tags %}<br data-jekyll-commonmark-ghpages="" />				{{ tag }}<br data-jekyll-commonmark-ghpages="" />			{% endfor %}<br data-jekyll-commonmark-ghpages="" />		{% endfor %}<br data-jekyll-commonmark-ghpages="" />	{% endcapture %}<span class="sb"><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />	{% assign sortedtags = tags | split:' ' | sort | uniq %}<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />	{% for tag in sortedtags %}<br data-jekyll-commonmark-ghpages="" />		&lt;div&gt;<br data-jekyll-commonmark-ghpages="" />			&lt;h3 id="{{ tag }}"&gt;{{ tag }}&lt;/h3&gt;<br data-jekyll-commonmark-ghpages="" />			&lt;ul&gt;<br data-jekyll-commonmark-ghpages="" />				{% for slide in site.slides %}<br data-jekyll-commonmark-ghpages="" />					{% if slide.tags contains tag %}<br data-jekyll-commonmark-ghpages="" />					&lt;li&gt;&lt;a href="{{ slide.url }}"&gt;{{ slide.title }}&lt;/a&gt;&lt;/li&gt;<br data-jekyll-commonmark-ghpages="" />					{% endif %}<br data-jekyll-commonmark-ghpages="" />				{% endfor %}<br data-jekyll-commonmark-ghpages="" />			&lt;/ul&gt;<br data-jekyll-commonmark-ghpages="" />		&lt;/div&gt;<br data-jekyll-commonmark-ghpages="" />	{% endfor %}<br data-jekyll-commonmark-ghpages="" /></span><span class="nt">&lt;/div&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="for-the-road"><strong>For the Road</strong></h3>
+<p>    With Reveal.js, we can create polished slide decks. By combining Reveal.js with Jekyll, we can host presentations with our site. The Reveal.js project <a href="https://github.com/hakimel/reveal.js/blob/master/README.md">README</a> provides a complete overview of the Reveal.js framework, including details for speaker notes and presentation multiplexing. Also, see the links below for example presentations and plugins.</p>
+
+<ul>
+  <li><a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">Reveal.js Examples</a></li>
+  <li><a href="https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware">Reveal.js Plugins</a></li>
+  <li><a href="https://github.com/hakimel/reveal.js/wiki">Reveal.js Wiki</a></li>
+</ul>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+	  
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Self-directed Leisure
+            
+            </li>
+            
+            <li><a href="mailto:hiyasdleisure@gmail.com">hiyasdleisure@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/sdleisure"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">sdleisure</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+				<p>A simple downtime blog. <br />
+Press <kbd>ESC</kbd> or <kbd>/</kbd> to search.<br />
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+		
+    <!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<script>superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-super-search',
+      inputSelector: '#js-super-search__input',
+      resultsSelector: '#js-super-search__results'
+    });</script>
+		<!-- Courtesty of MathJax: https://mathjax.org -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { extensions: ["AMScd.js"] }});
+    </script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  </body>
+
+</html>

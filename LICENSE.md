@@ -1,0 +1,1 @@
+The content I have added to this template is licensed under the [Creative Commons Attribution 3.0 license](https://creativecommons.org/licenses/by/3.0/us/deed.en_US). The additional code used to format and display that content is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php).

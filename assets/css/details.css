@@ -1,0 +1,26 @@
+details {}
+
+#proof {
+	background-color: #ffd5b3;
+	border: 1px; 
+	border-top-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-color: black;
+}
+
+#contents {
+	border: 3px; 
+	border-radius: 3px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-color: black;
+}
+
+#rule {
+	color: black;
+	size: 5px;
+}

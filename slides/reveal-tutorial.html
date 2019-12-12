@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<title>A Glance at Reveal.js</title>
+		<meta name="description" content="# A Glance at Reveal.js ### [sdleisure](https://github.com/sdleisure) Here is a slide. &amp;lt;section data-markdown&amp;gt; ### Here is a slide. &amp;lt;/section&amp;gt; ##...">
+		<link rel="stylesheet" href="/reveal.js/css/reveal.css"/>
+		
+			<link rel="stylesheet" href="/reveal.js/css/theme/sdleisure.css" id="theme"/>
+		
+		<!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="/reveal.js/lib/css/zenburn.css"/>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '/reveal.js/css/print/pdf.css' : '/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown="">
+  # A Glance at Reveal.js
+  ### [sdleisure](https://github.com/sdleisure)
+</section>
+<section>
+  <h3>Here is a slide.</h3>
+  <pre><code class="html" data-trim="">
+    &lt;section data-markdown&gt;
+      ### Here is a slide.
+    &lt;/section&gt;
+  </code></pre>
+</section>
+<section>
+  <section data-markdown="">
+    ### Here is another slide.
+  </section>
+  <section>
+    <h3>Here is a nested slide.</h3>
+    <pre><code class="html" data-trim="">
+      &lt;section&gt;
+        &lt;section data-markdown&gt;
+          ### Here is another slide.
+        &lt;/section&gt;
+        &lt;section data-markdown&gt;
+          ### Here is a nested slide.
+        &lt;/section&gt;
+      &lt;/section&gt;
+    </code></pre>
+  </section>
+</section>
+<section>
+  <section data-markdown="">
+    ### Reveal.js supports syntax highlighting with [Highlight.js](https://github.com/isagalaev/highlight.js/).
+  </section>
+  <section>
+    <h3>To enable, configure Reveal.js with the Highlight.js plugin.</h3>
+    <pre><code class="javascript" data-trim="">
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/highlight/highlight.js', async: true,
+              callback: function() { hljs.initHighlightingOnLoad(); }}
+        ]
+      });
+    </code></pre>
+  </section>
+  <section>
+    <h3>Also, load a Highlight.js CSS theme.</h3>
+    <pre><code class="html" data-trim="">
+      &lt;link rel="stylesheet" href="/reveal.js/lib/css/zenburn.css"/&gt;
+    </code></pre>
+  </section>
+</section>
+<section>
+  <section>
+    <h3>Reveal.js uses <a href="https://www.mathjax.org/">MathJax</a> to display mathematics.</h3>
+    <pre><code class="javascript" data-trim="">
+      Reveal.initialize({
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js',
+          config: 'TeX-AMS-MML_HTMLorMML'
+        }
+
+        dependencies: [
+          { src: '/reveal.js/plugin/math/math.js', async: true }
+        ]
+      });
+    </code></pre>
+  </section>
+  <section data-markdown="">
+    ### [MathJax Extensions](https://cdnjs.com/libraries/mathjax) can be used with the require tag.
+  </section>
+  <section data-markdown="">
+### For example, here is a commutative diagram.
+
+\\[
+\require{AMScd}\begin{CD}
+  \Omega\_k(M) @\&gt;\mathcal{L}\_X\&gt;\&gt; \Omega\_k(M) \\\
+  @V{\delta\_k}VV                @VV{\delta\_k}V \\\
+  \Omega\_{k+1}(M) @\&gt;\&gt;\mathcal{L}\_X\&gt; \Omega\_{k+1}(M)
+\end{CD}
+\\]
+  </section>
+  <section>
+    <h3>For example, here is a commutative diagram.</h3>
+
+    <pre><code class="LaTeX" data-trim="">
+      \\[
+      \require{AMScd}\begin{CD}
+        \Omega\_k(M)     @\&gt;\mathcal{L}\_X\&gt;\&gt;  \Omega\_k(M) \\\
+        @V{\delta\_k}VV                    @V{\delta\_k}VV \\\
+        \Omega\_{k+1}(M) @\&gt;\mathcal{L}\_X\&gt;\&gt;  \Omega\_{k+1}(M)
+      \end{CD}
+      \\]
+    </code></pre>
+  </section>
+</section>
+<section>
+  <section data-markdown="">
+    ### With [Jekyll-Scholar](https://sdleisure.github.io/jekyll/latex/2018/04/03/latex-in-jekyll.html), [\\(\\rm{B\\scriptsize IB}\\TeX\\)](https://www.ctan.org/pkg/bibtex) bibliographies can be rendered.
+  </section>
+  <section>
+    <h3>Inline citations can be displayed <a href="#Bar">[1]</a>.</h3>
+  </section>
+  <section>
+    <h3>Inline citations can be displayed <a href="#Bar">[1]</a>.</h3>
+
+    <pre><code class="html" data-trim="">
+      &lt;h3&gt;Inline citations can be displayed &#123;% cite Bar %&#125;.&lt;/h3&gt;
+    </code></pre>
+  </section>
+  <section>
+    <h3>Bibliographies can also be displayed.</h3>
+
+    <small><ol class="bibliography"><li><span id="Bar">“Revealing Jekyll.” 2018 [Online]. Available at: https://sdleisure.github.io/jekyll/reveal.js/2018/05/29/reveal-slide-decks.html</span></li></ol></small>
+  </section>
+  <section>
+    <h3>Bibliographies can also be displayed.</h3>
+
+    <pre><code class="html" data-trim="">
+      &lt;small&gt;&#123;% bibliography --cited -T &#123;&#123;references&#125;&#125; %&#125;&lt;/small&gt;
+    </code></pre>
+  </section>
+</section>
+<section data-markdown="">
+  ### For more information, see the [GitHub repository](https://github.com/hakimel/reveal.js/).
+</section>
+
+			</div>
+		</div>
+
+		<script src="/reveal.js/lib/js/head.min.js"></script>
+		<script src="/reveal.js/js/reveal.js"></script>
+		<script>
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				
+					transition: 'slide',
+				
+
+				// Optional reveal.js plugins
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js',
+          config: 'TeX-AMS-MML_HTMLorMML',
+        },
+
+				dependencies: [
+          { src: '/reveal.js/plugin/math/math.js', async: true },
+          { src: '/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '/reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '/reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '/reveal.js/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

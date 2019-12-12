@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Snippet Cosmetics in Jekyll</title>
+  <meta name="description" content="    After tailoring Rouge for my Jekyll site, a memorandum is due. Rouge is a syntax highlighter written in Ruby. As of Jekyll 3, it is the default replacing...">
+
+	<script src="/assets/javascript/super-search.js" type="text/javascript"></script>
+	<script src="/assets/javascript/toggle.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="/assets/css/super-search.css">
+  <link rel="stylesheet" href="/assets/main.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+	<link rel="stylesheet" href="/assets/css/columns.css">
+	<link rel="stylesheet" href="/assets/css/slide-frame.css">
+	<link rel="stylesheet" href="/assets/css/details.css">
+  <link rel="canonical" href="https://sdleisure.github.io/jekyll/rouge/2018/03/03/snippet-cosmetics-in-jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="Self-directed Leisure" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+		<!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<div class="super-search" id="js-super-search">
+			<a href="javascript:void(0)" onclick="superSearch.toggle()" class="super-search__close-btn">X</a>
+			<input type="text" placeholder="Looking for something?" class="super-search__input" id="js-super-search__input">
+			<ul class="super-search__results" id="js-super-search__results"></ul>
+		</div>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">Self-directed Leisure</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Posts.html">Posts by Tag</a>
+            
+          
+            
+            
+            <a class="page-link" href="/tags-Slides.html">Decks by Tag</a>
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Snippet Cosmetics in Jekyll</h1>
+    <p class="post-meta">
+      <time datetime="2018-03-03T00:00:00-05:00" itemprop="datePublished">
+        
+        Mar 3, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>    After tailoring <a href="http://rouge.jneen.net">Rouge</a> for my <a href="https://jekyllrb.com/">Jekyll</a> site, a memorandum is due. Rouge is a syntax highlighter written in <a href="https://www.ruby-lang.org/en/">Ruby</a>. As of Jekyll 3, it is the default replacing the <a href="http://pygments.org">Pygments</a> highlighter. It can greatly elevate the display and readability of your code snippets if properly leveraged. What I mean to say is your code can look good even if it stinks.</p>
+
+<p><strong>Contents</strong></p>
+<ul id="markdown-toc">
+  <li><a href="#jekyll-configuration" id="markdown-toc-jekyll-configuration"><strong>Jekyll Configuration</strong></a></li>
+  <li><a href="#code-highlighting" id="markdown-toc-code-highlighting"><strong>Code Highlighting</strong></a></li>
+  <li><a href="#handling-box-overflows" id="markdown-toc-handling-box-overflows"><strong>Handling Box Overflows</strong></a></li>
+  <li><a href="#for-the-road" id="markdown-toc-for-the-road"><strong>For the Road</strong></a></li>
+</ul>
+
+<h3 id="jekyll-configuration"><strong>Jekyll Configuration</strong></h3>
+<p>    Rogue is the built-in code highlighter for Jekyll 3. If you have strayed from the default, you will need to make sure Rouge is installed. A compatible Markdown engine is also required.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>gem install kramdown rouge
+</code></pre></div></div>
+<p>You can then set Rouge as the highlighter in your <code class="highlighter-rouge">_config.yml</code> file.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="na">markdown</span><span class="pi">:</span> <span class="s">kramdown</span><br data-jekyll-commonmark-ghpages="" /><span class="na">highlighter</span><span class="pi">:</span> <span class="s">rouge</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>    Rouge is shipped with the <code class="highlighter-rouge">rougify</code> command line utility. The <code class="highlighter-rouge">rougify</code> command allows you to set the display theme of your code snippets. First take a look at the available themes.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rougify <span class="nb">help </span>style
+</code></pre></div></div>
+<p>To use a particular style, use <code class="highlighter-rouge">rougify</code> to create a style sheet and add it to the <code class="highlighter-rouge">assets</code> of your site source directory.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rougify style foobar <span class="o">&gt;</span> assets/css/highlight.css
+</code></pre></div></div>
+<p>Then add a <code class="highlighter-rouge">link</code> element to the HTML <code class="highlighter-rouge">head</code>.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/assets/css/highlights.css"</span><span class="nt">&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="code-highlighting"><strong>Code Highlighting</strong></h3>
+<p>    With Rouge configured, we can start rendering our code blocks. Rouge supports many languages. Enter the following for a list of supported languages:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rougify list
+</code></pre></div></div>
+<p>Code snippets can be created with <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="sb">```cpp<br data-jekyll-commonmark-ghpages="" />#include &lt;iostream&gt;<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />int main() {<br data-jekyll-commonmark-ghpages="" />  std::cout &lt;&lt; "Hello World!";<br data-jekyll-commonmark-ghpages="" />}<br data-jekyll-commonmark-ghpages="" />```</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World!"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Alternatively, <a href="https://help.shopify.com/themes/liquid">Liquid</a> can be used.</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="p">{%</span><span class="w"> </span><span class="nt">highlight</span><span class="w"> </span>java<span class="w"> </span><span class="p">%}</span><br data-jekyll-commonmark-ghpages="" />public class HelloWorld {<br data-jekyll-commonmark-ghpages="" />  public static void main(String[] args) {<br data-jekyll-commonmark-ghpages="" />    System.out.println("Hello World!");<br data-jekyll-commonmark-ghpages="" />  }<br data-jekyll-commonmark-ghpages="" />}<br data-jekyll-commonmark-ghpages="" /><span class="p">{%</span><span class="w"> </span><span class="nt">endhighlight</span><span class="w"> </span><span class="p">%}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Liquid can also include line numbers with the <code class="highlighter-rouge">linenos</code> argument.</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="p">{%</span><span class="w"> </span><span class="nt">highlight</span><span class="w"> </span>python<span class="w"> </span>linenos<span class="w"> </span><span class="p">%}</span><br data-jekyll-commonmark-ghpages="" />def main():<br data-jekyll-commonmark-ghpages="" />	print "Hello World!"<br data-jekyll-commonmark-ghpages="" /><span class="p">{%</span><span class="w"> </span><span class="nt">endhighlight</span><span class="w"> </span><span class="p">%}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span><br data-jekyll-commonmark-ghpages="" />	<span class="k">print</span> <span class="s">"Hello World!"</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="handling-box-overflows"><strong>Handling Box Overflows</strong></h3>
+<p>    Box overflows can be handled with an extra declaration block in the Rouge theme style sheet. From above, recall the style sheet has the path <code class="highlighter-rouge">assets/css/highlight.css</code> relative to your site source directory. The following block specifies overflows to be clipped and a scrolling feature added.</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nc">.highlight</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">max-height</span><span class="p">:</span> <span class="m">240px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>From my experience, it might be necessary to add some padding for snippets with line numbers. A block similar to the following snippet should work.</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nc">.highlight</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">padding</span><span class="p">:</span> <span class="m">18px</span> <span class="m">8px</span> <span class="m">12px</span> <span class="m">12px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">max-height</span><span class="p">:</span> <span class="m">240px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="for-the-road"><strong>For the Road</strong></h3>
+<p>    Now that we have Rouge highlighting our snippets, code readability will be improved. This serves me well considering my high turnover memory. Rouge offers support for many languages. Take a look at the documentation for a listing.</p>
+<ul>
+  <li><a href="http://www.rubydoc.info/gems/rouge/frames">Rouge Documentation</a></li>
+</ul>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+	  
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Self-directed Leisure
+            
+            </li>
+            
+            <li><a href="mailto:hiyasdleisure@gmail.com">hiyasdleisure@gmail.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/sdleisure"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">sdleisure</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+				<p>A simple downtime blog. <br />
+Press <kbd>ESC</kbd> or <kbd>/</kbd> to search.<br />
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+		
+    <!-- Courtesy of Sir Kushagra Gour: https://github.com/chinchang/super-search/ --> 
+		<script>superSearch({
+      searchFile: '/feed.xml',
+      searchSelector: '#js-super-search',
+      inputSelector: '#js-super-search__input',
+      resultsSelector: '#js-super-search__results'
+    });</script>
+		<!-- Courtesty of MathJax: https://mathjax.org -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({ TeX: { extensions: ["AMScd.js"] }});
+    </script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  </body>
+
+</html>
